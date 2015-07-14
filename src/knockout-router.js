@@ -16,7 +16,17 @@ export default class Router {
     if ('string' !== typeof handler && 'function' !== typeof handler) {
       throw new Error('`handler` should be either string or function');
     }
-    if (!controller) controller = this;
+    if (!controller) {
+      if ('string' === typeof handler) {
+        if (this[handler]) controller = this;
+        else if (this.app[handler]) controller = app;
+        else throw new Error(`Cannot find method ${handler} on the router or on the the main view model`);
+
+      } else {
+        // Just assume that the desired controller is the router itself (i.e. `this`)
+        controller = this;
+      }
+    }
     if (!meta) meta = {};
     return params => {
       let attenuated_params = Object.assign(meta, params);
@@ -70,16 +80,17 @@ export default class Router {
     return Promise.reject(err);
   }
 
-  handlePath(path) {
+  handlePath(path, opts={}) {
     let recognized_route = this.route_recognizer.recognize(path);
     if (!recognized_route) return this.unrecognizedRouteHandler(path);
     let {handler, params} = recognized_route[0];
-    return handler(params)
-    .then(() => Promise.resolve(params))
+    let attenuated_params = Object.assign(params, opts);
+    return handler(attenuated_params)
+    .then(() => Promise.resolve(attenuated_params
     .catch(err => {
       let e = new Error(`Could not handle path '${path}': ${err.message || err}`);
       e.original_error = err;
-      e.params         = params;
+      e.params         = attenuated_params;
       return Promise.reject(e);
     });
   }

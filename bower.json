@@ -1,0 +1,25 @@
+{
+  "name": "knockout-router",
+  "version": "0.1.0",
+  "homepage": "https://github.com/cbankester/knockout-router",
+  "authors": [
+    "Christian Michael Paul Bankester <cbankester@immense.net>"
+  ],
+  "description": "A Knockout.js router using components & templates for pages",
+  "main": "index.js",
+  "keywords": [
+    "knockout",
+    "router"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "route-recognizer": "0.x"
+  }
+}

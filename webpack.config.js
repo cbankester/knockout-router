@@ -4,10 +4,10 @@ var webpack = require('webpack');
 
 // Configuration data
 module.exports = {
-    entry: './example-view.js',
+    entry: './src/knockout-router.js',
     output: {
         path: __dirname,
-        filename: 'bundle.js'
+        filename: 'index.js'
     },
     // allow modules listed in the bower_components folder to be loaded
     resolve: {
@@ -17,11 +17,7 @@ module.exports = {
       // use the `main` key of modules' bower.json to determine the files to load
       new webpack.ResolverPlugin(
             new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-        ),
-      // things specified here will be provided globally to all loaded modules
-      new webpack.ProvidePlugin({
-        ko: 'knockout'
-      })
+        )
     ],
     module: {
         loaders: [

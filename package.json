@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "5.x",
+    "webpack": "1.x",
+    "babel-loader": "5.x"
+  }
+}

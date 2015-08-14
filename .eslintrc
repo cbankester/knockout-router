@@ -2,10 +2,21 @@
   "extends": "eslint-config-immense-networks",
   "globals": {
     "console": true,
-    "ko": true
+    "ko": true,
+    "module": true,
+    "__dirname": true,
+    "require": true,
+    "window": true,
+    "describe": true,
+    "it": true,
+    "beforeEach": true
   },
   "rules": {
     "consistent-this": 0,
-    "complexity": [2,10]
+    "complexity": [2,10],
+    "no-var": 0,
+    "no-multi-spaces": 0,
+    "max-nested-callbacks": 0,
+    "no-continue": 0
   }
 }

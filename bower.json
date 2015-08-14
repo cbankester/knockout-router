@@ -21,5 +21,8 @@
   ],
   "dependencies": {
     "route-recognizer": "0.x"
+  },
+  "devDependencies": {
+    "knockout": "~3.3.0"
   }
 }

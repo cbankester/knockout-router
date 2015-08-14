@@ -7,8 +7,21 @@
   "devDependencies": {
     "babel-core": "5.x",
     "babel-loader": "5.x",
-    "eslint": "^1.0.0-rc-1",
+    "chai": "3.x",
+    "eslint": "1.x",
     "eslint-config-immense-networks": "0.x",
+    "karma": "0.x",
+    "karma-chai-sinon": "0.x",
+    "karma-chrome-launcher": "0.x",
+    "karma-firefox-launcher": "0.x",
+    "karma-mocha": "0.x",
+    "karma-mocha-reporter": "1.x",
+    "karma-phantomjs-launcher": "0.x",
+    "karma-webpack": "1.x",
+    "mocha": "2.x",
+    "phantomjs": "1.x",
+    "sinon": "1.x",
+    "sinon-chai": "2.x",
     "webpack": "1.x"
   }
 }

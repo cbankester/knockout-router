@@ -39,8 +39,7 @@ function getHandlerFunctionForRoute(router, handler) {
   if (typeof handler === 'string') {
     handlerFn = router[handler] || router.app[handler];
     assert(handlerFn, `Cannot find method ${handler} on the router or on the the main view model`);
-  } else
-    handlerFn = handler;
+  } else handlerFn = handler;
   return handlerFn.bind(router);
 }
 

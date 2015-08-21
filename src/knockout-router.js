@@ -51,11 +51,10 @@ function getHandlerFunctionForRoute(router, handler) {
 */
 
 function generateHandler(router, route) {
-  const {path, handler: handler_name, page} = route;
+  const {handler: handler_name, page} = route;
   const handlerFn = getHandlerFunctionForRoute(router, handler_name);
   let {meta} = route;
   if (!meta) meta = {};
-  meta.path = path;
   return route_params => {
     const attenuated_params = Object.assign({meta}, route_params);
     return Promise.resolve()
@@ -117,24 +116,54 @@ export default class Router {
       }]);
     }
   }
-  preHandle() { // path, handler, params
+
+  /**
+   * Router method to perform some logic before a route is handled by the router
+   * This method should be overridden by classes extending Router
+   * @param {opts(Object)} The object which will be passed to your handler (immutable)
+   * @return {Promise}
+  */
+
+  preHandle() {
     return new Promise(resolve => {
       // console.log('prehandler', {path, params});
       resolve();
     });
   }
-  postHandle() { // path, handler, params
+
+  /**
+   * Router method to perform some logic after a route has been handled by the router
+   * This method should be overridden by classes extending Router
+   * @param {opts(Object)} The object which which was passed to your handler (immutable)
+   * @return {Promise}
+  */
+
+  postHandle() {
     return new Promise(resolve => {
       // console.log('posthandler', {path, params});
       resolve();
     });
   }
+
+  /**
+   * Router method called when a path was not recognized
+   * @param {path(string)} The path which was not recognized
+   * @return {Promise} Promise of an error
+  */
+
   unrecognizedRouteHandler(path) {
     const err = new Error("404 Not Found");
     err.path = path;
     err.status = 404;
     return Promise.reject(err);
   }
+
+  /**
+   * Router method to trigger handling of a path
+   * @param {path(string)} The path to handle
+   * @param {opts(Object)} Options to pass to preHandle, postHandle and the handler
+   * @return {Promise} Promise of the options passed to handlers or error
+  */
 
   handlePath(path, opts={}) {
     const recognized_route = this.route_recognizer.recognize(path);

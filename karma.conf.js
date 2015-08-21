@@ -18,7 +18,7 @@ module.exports = function configureKarma(config) {
     // list of files / patterns to load in the browser
     files: [
       'bower_components/knockout/dist/knockout.js',
-      'test/index.js'
+      'test/**/*-test.js'
     ],
     client: {
       mocha: {
@@ -35,7 +35,7 @@ module.exports = function configureKarma(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/index.js': ['webpack']
+      'test/**/*-test.js': ['webpack']
     },
     webpack: {
       // allow modules listed in the bower_components and src folders to be loaded
@@ -90,7 +90,7 @@ module.exports = function configureKarma(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
     webpackMiddleware: {
       noInfo: true
     },

@@ -17,6 +17,7 @@
     "no-var": 0,
     "no-multi-spaces": 0,
     "max-nested-callbacks": 0,
-    "no-continue": 0
+    "no-continue": 0,
+    "indent": 0
   }
 }
